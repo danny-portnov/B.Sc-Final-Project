@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A243A31D-C347-4979-A554-894233D0A0DB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Common.HwControl</RootNamespace>
+    <AssemblyName>CommonHwControl</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <LangVersion>latest</LangVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CodeVendor.Controls">
+      <HintPath>..\..\ATE_CommonHwControl\Graphics\CodeVendor.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="MuxBox1_5App, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MuxBox1_5\ATE_MuxBox1_5\Bin\MuxBox1_5App.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\DataTypes\Constants.cs" />
+    <Compile Include="Model\CommonHwController.cs" />
+    <Compile Include="Model\Model\CommonHwExceptionHandler.cs" />
+    <Compile Include="Model\Model\Devices.cs" />
+    <Compile Include="Model\Model\Drivers\AIO.cs" />
+    <Compile Include="Model\Model\Drivers\DIO.cs" />
+    <Compile Include="Model\Model\Drivers\DiscreteController.cs" />
+    <Compile Include="Model\Model\Drivers\HardwareDevice.cs" />
+    <Compile Include="Model\Model\Drivers\PowersupplyController.cs" />
+    <Compile Include="Model\Model\Drivers\RelayController.cs" />
+    <Compile Include="Model\Model\Drivers\RelayStateEnum.cs" />
+    <Compile Include="Model\Model\Drivers\IActivableOnStartUpDevice.cs" />
+    <Compile Include="Model\Model\JsonConfigParser\DataObjects\AnalogChannel.cs" />
+    <Compile Include="Model\Model\JsonConfigParser\DataObjects\DIOChannelBase.cs" />
+    <Compile Include="Model\Model\JsonConfigParser\DataObjects\DiscreteChannel.cs" />
+    <Compile Include="Model\Model\JsonConfigParser\DataObjects\PowerSupplyParams.cs" />
+    <Compile Include="Model\Model\JsonConfigParser\DataObjects\RelayChannel.cs" />
+    <Compile Include="Model\Model\JsonConfigParser\IDaqChannelBase.cs" />
+    <Compile Include="Model\Model\JsonConfigParser\JsonDesirializer.cs" />
+    <Compile Include="Model\Model\PsStateEnum.cs" />
+    <Compile Include="Model\Utilities\ArgumentValidator.cs" />
+    <Compile Include="Model\Utilities\DictionaryExtended.cs" />
+    <Compile Include="Model\Utilities\IsExternalInit.cs" />
+    <Compile Include="Model\Utilities\MyConvertions.cs" />
+    <Compile Include="Model\Utilities\NotificationPrinter.cs" />
+    <Compile Include="Model\Utilities\ProcessExtended.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\HardwareControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\HardwareControl.Designer.cs">
+      <DependentUpon>HardwareControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CustomMetroTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Groupers\DigitalInputGrouper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Groupers\DigitalInputGrouper.Designer.cs">
+      <DependentUpon>DigitalInputGrouper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Groupers\DigitalOutputGrouper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Groupers\DigitalOutputGrouper.Designer.cs">
+      <DependentUpon>DigitalOutputGrouper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Groupers\GrouperBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Groupers\GrouperBase.Designer.cs">
+      <DependentUpon>GrouperBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Groupers\AnalogInputGrouper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Groupers\AnalogInputGrouper.Designer.cs">
+      <DependentUpon>AnalogInputGrouper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Groupers\AnalogOutputGrouper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Groupers\AnalogOutputGrouper.Designer.cs">
+      <DependentUpon>AnalogOutputGrouper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Groupers\MuxGrouper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Groupers\MuxGrouper.Designer.cs">
+      <DependentUpon>MuxGrouper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Groupers\PowerSuppliesGrouper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Groupers\PowerSuppliesGrouper.Designer.cs">
+      <DependentUpon>PowerSuppliesGrouper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Groupers\RelaysGrouper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Groupers\RelaysGrouper.Designer.cs">
+      <DependentUpon>RelaysGrouper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MainAppPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\MainStatusBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\MainStatusBar.Designer.cs">
+      <DependentUpon>MainStatusBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ModernTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ModernTextBox.Designer.cs">
+      <DependentUpon>ModernTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Panels\AnalogOutputPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\PeriodUpdaterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\PeriodUpdaterControl.Designer.cs">
+      <DependentUpon>PeriodUpdaterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\RichMessageBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Utility\ControlsExtractor.cs" />
+    <Compile Include="Model\Utilities\LogType.cs" />
+    <Compile Include="UI\Utility\RATEButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Utility\UiEnums.cs" />
+    <Compile Include="UI\Controls\AnalogInputControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\AnalogInputControl.Designer.cs">
+      <DependentUpon>AnalogInputControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\AnalogOutputCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\AnalogOutputCtrl.Designer.cs">
+      <DependentUpon>AnalogOutputCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\DigitalInputCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\DigitalInputCtrl.Designer.cs">
+      <DependentUpon>DigitalInputCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\DigitalOutputCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\DigitalOutputCtrl.Designer.cs">
+      <DependentUpon>DigitalOutputCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\RelayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\PowersupplyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\PowersupplyControl.Designer.cs">
+      <DependentUpon>PowersupplyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LED.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\LED.designer.cs">
+      <DependentUpon>LED.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CommonHwControlAppView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CommonHwControlAppView.Designer.cs">
+      <DependentUpon>CommonHwControlAppView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NumericTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\NumericTextBox.Designer.cs">
+      <DependentUpon>NumericTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Panels\AnalogInputPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Panels\DigitalInputPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Panels\DigitalOutputPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Panels\HardwarePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Panels\HardwarePanel.Designer.cs">
+      <DependentUpon>HardwarePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Panels\PowersuppliesPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Panels\RelayPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Utility\LabelExtentions.cs" />
+    <Compile Include="UI\Utility\AboutWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Utility\AboutWindow.designer.cs">
+      <DependentUpon>AboutWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Utility\Utils.cs" />
+    <EmbeddedResource Include="UI\Controls\HardwareControl.resx">
+      <DependentUpon>HardwareControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\AnalogInputControl.resx">
+      <DependentUpon>AnalogInputControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\AnalogOutputCtrl.resx">
+      <DependentUpon>AnalogOutputCtrl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\DigitalInputCtrl.resx">
+      <DependentUpon>DigitalInputCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\DigitalOutputCtrl.resx">
+      <DependentUpon>DigitalOutputCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\RelayControl.resx">
+      <DependentUpon>RelayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Groupers\DigitalInputGrouper.resx">
+      <DependentUpon>DigitalInputGrouper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Groupers\DigitalOutputGrouper.resx">
+      <DependentUpon>DigitalOutputGrouper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Groupers\GrouperBase.resx">
+      <DependentUpon>GrouperBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Groupers\AnalogInputGrouper.resx">
+      <DependentUpon>AnalogInputGrouper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Groupers\AnalogOutputGrouper.resx">
+      <DependentUpon>AnalogOutputGrouper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Groupers\MuxGrouper.resx">
+      <DependentUpon>MuxGrouper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Groupers\PowerSuppliesGrouper.resx">
+      <DependentUpon>PowerSuppliesGrouper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Groupers\RelaysGrouper.resx">
+      <DependentUpon>RelaysGrouper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\PowersupplyControl.resx">
+      <DependentUpon>PowersupplyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CommonHwControlAppView.resx">
+      <DependentUpon>CommonHwControlAppView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MainStatusBar.resx">
+      <DependentUpon>MainStatusBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ModernTextBox.resx">
+      <DependentUpon>ModernTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NumericTextBox.resx">
+      <DependentUpon>NumericTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Panels\AnalogInputPanel.resx">
+      <DependentUpon>AnalogInputPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Panels\HardwarePanel.resx">
+      <DependentUpon>HardwarePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UI\PeriodUpdaterControl.resx">
+      <DependentUpon>PeriodUpdaterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Utility\AboutWindow.resx">
+      <DependentUpon>AboutWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\ClientServerTransparent.ico" />
+    <Content Include="Resources\rights1.png" />
+    <EmbeddedResource Include="Resources\Undetermined.png" />
+    <None Include="Resources\simulationMode.png" />
+    <None Include="Resources\runMode.png" />
+    <None Include="Resources\Help_30px.png" />
+    <None Include="Resources\Header.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AppInterfaces">
+      <Version>2.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="DriversWrapper">
+      <Version>1.7.7.3</Version>
+    </PackageReference>
+    <PackageReference Include="ini-parser-netstandard">
+      <Version>2.5.2</Version>
+    </PackageReference>
+    <PackageReference Include="LoggerClientCS">
+      <Version>3.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="MetroModernUI">
+      <Version>1.4.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
