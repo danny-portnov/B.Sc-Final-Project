@@ -159,7 +159,7 @@ namespace Common.HwControl.Model.Drivers
             {
                 ch0.ConfigAOChannel(channel.OutputPulseArray,
                                     channel.OutputPulseArray.Length,
-                                    channel.OutputPulseArray.Length, // For 1PPS
+                                    channel.OutputPulseArray.Length * channel.PulsesPerSec,
                                     SampleMode.Cont);
                 //1st param:Array which contains the wave, 2nd param: size of the array mentioned, 3rd: frequency (number of times the array's repeated in a sec)
                 //4th param: number of times the wave repeats: infinite (cont) , finite (1?), or something else dunno

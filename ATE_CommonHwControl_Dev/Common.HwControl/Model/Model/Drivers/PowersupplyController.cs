@@ -69,7 +69,7 @@ namespace Common.HwControl.Model.Drivers
             try
             {
                 return choosenPS.Simulation && _isTurnedOn 
-                    ? Math.Abs(choosenPS.Voltage_Programmed - new Random().NextDouble()) 
+                    ? Math.Abs(choosenPS.Voltage_Programmed) 
                     : choosenPS.Voltage_Actual;
             }
             catch (Exception e)

@@ -24,6 +24,6 @@ namespace Common.HwControl.UI.Panels
         internal override void UnregisterAllEvents() => AppModel.DiscreteDevices.DIsUpdated -= UpdateDIsCtrls;
 
         private void UpdateDIsCtrls(object sender, (string signalName, bool value) args)
-            => FindAndUpdate<DigitalInputCtrl>(args.signalName);
+            => FindAndUpdate<DigitalInputCtrl, bool>(args.signalName, args.value);
     }
 }

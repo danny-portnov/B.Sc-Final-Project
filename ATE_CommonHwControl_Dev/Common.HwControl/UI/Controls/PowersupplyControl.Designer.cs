@@ -155,9 +155,9 @@ namespace Common.HwControl.UI.Groupers
             this.currentLabel.AutoSize = true;
             this.currentLabel.Location = new System.Drawing.Point(8, 112);
             this.currentLabel.Name = "currentLabel";
-            this.currentLabel.Size = new System.Drawing.Size(41, 13);
+            this.currentLabel.Size = new System.Drawing.Size(65, 13);
             this.currentLabel.TabIndex = 60;
-            this.currentLabel.Text = "Current";
+            this.currentLabel.Text = "Current Limit";
             // 
             // voltageLabel
             // 

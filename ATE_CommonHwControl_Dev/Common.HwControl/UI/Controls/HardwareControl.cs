@@ -48,5 +48,6 @@ namespace Common.HwControl.UI.Controls
         protected HardwareControl() => InitializeComponent();
 
         internal virtual Task UpdateControl() => Task.CompletedTask;
+        internal virtual void UpdateControl(object value) => throw new NotImplementedException();
     }
 }

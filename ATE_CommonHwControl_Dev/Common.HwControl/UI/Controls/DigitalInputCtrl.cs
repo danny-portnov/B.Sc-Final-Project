@@ -26,28 +26,28 @@ namespace Common.HwControl.UI.Controls
             FormatLabel(labelText, ctrlLabel1, ledDisplay.Location.X - ctrlLabel1.Location.X + ledDisplay.Size.Width - 50);
         }
 
-        internal Task UpdateControl(Color? ledColor)
+        private void UpdateControl(Color ledColor) 
+            => ledDisplay.InvokeIfNeeded(() => ledDisplay.Color = ledColor);
+
+        internal override void UpdateControl(object value)
+            => UpdateControl((bool)value ? Color.LightGreen : Color.Black);
+
+        internal override Task UpdateControl()
         {
-            bool? value;
-            if (ledColor == default)
-            {
-                try
-                {
-                    value = AppModel.DiscreteDevices.GetDiscrete(ctrlLabel1.Text);
-                }
-                catch
-                {
-                    return Task.CompletedTask; // Exception already printed at driver level.
-                }
-                ledColor = value.Value ? Color.LightGreen : Color.Black;
-            }
-            ledDisplay.InvokeIfNeeded(() => ledDisplay.Color = ledColor.Value);
+            AppModel.DiscreteDevices.GetDiscrete(ctrlLabel1.Text);
             return Task.CompletedTask;
         }
 
-        internal override Task UpdateControl() => UpdateControl(default);
-
-        protected void GetButton_CheckedChanged(object sender, EventArgs e)
-            => UpdateControl(getButton.CheckState == CheckState.Checked ? default : Color.LightGray);
+        protected async void GetButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (getButton.Checked)
+            {
+                await UpdateControl();
+            }
+            else
+            {
+                UpdateControl(Color.LightGray);
+            }
+        }
     }
 }

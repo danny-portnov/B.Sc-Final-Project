@@ -140,6 +140,13 @@ namespace Common.HwControl.UI.Panels
             return ctrlToAdd;
         }
 
+        protected void FindAndUpdate<TControl, TValue>(string signalName, TValue value)
+            where TControl : HardwareControl
+        {
+            TControl ctrlToAdd = FindControlToUpdate<TControl>(signalName);
+            ctrlToAdd.UpdateControl(value);
+        }
+
         protected void FindAndUpdate<TControl>(string signalName)
             where TControl : HardwareControl
         {

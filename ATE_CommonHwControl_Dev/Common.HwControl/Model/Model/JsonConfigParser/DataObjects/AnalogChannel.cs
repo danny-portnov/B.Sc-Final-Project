@@ -27,12 +27,13 @@ namespace Common.HwControl.Model.JsonConfigParser.DataObjects
         public string ActivationRelay { get; }
         public string DeviceName { get; init; }
         public double[] OutputPulseArray { get; }
+        public int PulsesPerSec { get; }
 
 
         [JsonConstructor]
         public AnalogChannel(int? channel, int? buffer, int? SampleRate, ConfigChannels? channelConfig, string deviceName,
-            AnalogDirection direction, int? MulFactor, string ActivationRelay, int? arraySize, int? pulseWidth, double? pulseHeight)
-            : this(buffer, SampleRate, channelConfig, deviceName, MulFactor, ActivationRelay)
+            AnalogDirection direction, int? MulFactor, string ActivationRelay, int? arraySize, int? pulseWidth, double? pulseHeight,
+            int? pulsesPerSec) : this(buffer, SampleRate, channelConfig, deviceName, MulFactor, ActivationRelay)
         {
             int channelNum = channel ?? throw new ArgumentNullException(nameof(channel));
             Direction = direction;
@@ -47,12 +48,12 @@ namespace Common.HwControl.Model.JsonConfigParser.DataObjects
                     OutChannelNum = (AOChannels?)channelNum;
                     OutputPulseArray = Enumerable.Range(0, arraySize.Value)
                         .Select(i => i < pulseWidth.Value ? pulseHeight.Value : 0).ToArray();
+                    PulsesPerSec = pulsesPerSec.Value;
                     break;
                 default:
                     throw new InvalidEnumArgumentException(nameof(Direction));
             }
             TerminalConfiguration = ChannelConfig.ToString();
-
         }
 
         private AnalogChannel(int? buffer, int? sampleRate, ConfigChannels? channelConfig, string deviceName, int? mulFactor, string activationRelay)

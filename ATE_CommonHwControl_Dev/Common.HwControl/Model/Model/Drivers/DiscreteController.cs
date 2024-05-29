@@ -2,6 +2,7 @@
 using Common.HwControl.Model.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Common.HwControl.Model.Drivers
 {
@@ -10,6 +11,8 @@ namespace Common.HwControl.Model.Drivers
     /// </summary>
     public class DiscreteController : DIO<DiscreteChannel, bool>
     {
+        private Random random = new();
+
         private EventHandler<(string, bool)> _DOsUpdated;
         public event EventHandler<(string, bool)> DOsUpdated
         {
@@ -47,6 +50,7 @@ namespace Common.HwControl.Model.Drivers
         public bool GetDiscrete(string signalName)
         {
             bool value = GetLineValue(signalName);
+            //bool value = random.Next(2) == 0;
             _DIsUpdated?.Invoke(default, (signalName, value));
             return value;
         }
